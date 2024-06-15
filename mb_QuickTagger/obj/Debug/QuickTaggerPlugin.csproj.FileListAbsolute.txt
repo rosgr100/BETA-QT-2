@@ -1,0 +1,10 @@
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\bin\Debug\mb_QuickTagger.dll.config
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\bin\Debug\mb_QuickTagger.dll
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\bin\Debug\mb_QuickTagger.pdb
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\QuickTaggerPlugin.csproj.AssemblyReference.cache
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\MusicBeePlugin.ConfigurationForm.resources
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\MusicBeePlugin.CustomValueForm.resources
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\QuickTaggerPlugin.csproj.GenerateResource.cache
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\QuickTaggerPlugin.csproj.CoreCompileInputs.cache
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\mb_QuickTagger.dll
+C:\Users\rosGR\Source\Repos\MB_QuickTagger spirosg\mb_QuickTagger\obj\Debug\mb_QuickTagger.pdb
