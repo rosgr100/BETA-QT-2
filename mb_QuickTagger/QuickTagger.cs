@@ -75,7 +75,7 @@ namespace MusicBeePlugin
         private void ChangeFileTag(string fileUrl, MetaDataType tag, string newValue)
         {
             // Define priority words
-            var priorityWords = new List<string> { "#Start", "#Build", "#Bridge", "#Peak", "#End" };
+            var priorityWords = new List<string> { "#Start", "#Build", "#Bridge", "#Peak", "#Release", "#End", "#Closing" };
 
             // Retrieve the existing tag value
             string existingValue = Api.Library_GetFileTag(fileUrl, tag);
