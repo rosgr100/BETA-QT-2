@@ -1,1 +1,1 @@
-MusicBee quick music tagging plugin
+MB quick music tagging plugin
