@@ -97,17 +97,17 @@ namespace MusicBeePlugin
                 // Sort the list to ensure priority words are at the front
                 tagList.Sort((x, y) =>
                 {
-                    int indexX = priorityWords.IndexOf(x);
-                    int indexY = priorityWords.IndexOf(y);
+                     int indexX = priorityWords.IndexOf(x);
+                     int indexY = priorityWords.IndexOf(y);
 
-                    if (indexX != -1 && indexY != -1)
-                        return indexX.CompareTo(indexY); // Both are priority words
-                    if (indexX != -1)
+                     if (indexX != -1 && indexY != -1)
+                         return indexX.CompareTo(indexY); // Both are priority words
+                     if (indexX != -1)
                         return -1; // x is a priority word
-                    if (indexY != -1)
+                     if (indexY != -1)
                         return 1;  // y is a priority word
-                    return x.CompareTo(y); // Neither are priority words
-                });
+                     return 0; // Neither are priority words, do not sort alphabetically
+                  });
 
                 updatedValue = string.Join(", ", tagList);
             }
