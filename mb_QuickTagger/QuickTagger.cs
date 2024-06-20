@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using static MusicBeePlugin.Plugin;
 using System.IO;
 using System.Linq;
+using System.Xml;
 
 namespace MusicBeePlugin
 {
@@ -74,8 +75,7 @@ namespace MusicBeePlugin
 
         private void ChangeFileTag(string fileUrl, MetaDataType tag, string newValue)
         {
-            // Define priority words
-            var priorityWords = new List<string> { "#Start", "#Build", "#Bridge", "#Peak", "#Release", "#End", "#Closing" };
+            var priorityWords = new List<string>();
 
             // Retrieve the existing tag value
             string existingValue = Api.Library_GetFileTag(fileUrl, tag);
@@ -83,7 +83,6 @@ namespace MusicBeePlugin
 
             if (AppendableTags.Contains(tag))
             {
-                // Append or remove the new value
                 List<string> tagList = existingValue?.Split(',').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToList() ?? new List<string>();
                 if (tagList.Contains(newValue.Trim()))
                 {
@@ -94,26 +93,26 @@ namespace MusicBeePlugin
                     tagList.Add(newValue.Trim());
                 }
 
-                // Sort the list to ensure priority words are at the front
-                tagList.Sort((x, y) =>
-                {
-                     int indexX = priorityWords.IndexOf(x);
-                     int indexY = priorityWords.IndexOf(y);
+                // Read priority words from the settings configuration
+                var xmlPriorityWords = PluginSettings.Settings.PriorityWords;
 
-                     if (indexX != -1 && indexY != -1)
-                         return indexX.CompareTo(indexY); // Both are priority words
-                     if (indexX != -1)
-                        return -1; // x is a priority word
-                     if (indexY != -1)
-                        return 1;  // y is a priority word
-                     return 0; // Neither are priority words, do not sort alphabetically
-                  });
+                // Combine the settings priority words with the existing priority words
+                priorityWords.AddRange(xmlPriorityWords);
 
-                updatedValue = string.Join(", ", tagList);
+                // Separate the priority and non-priority tags
+                var priorityTags = tagList.Where(x => priorityWords.Contains(x)).ToList();
+                var nonPriorityTags = tagList.Where(x => !priorityWords.Contains(x)).ToList();
+
+                // Sort the priority tags based on their priority
+                priorityTags.Sort((x, y) => priorityWords.IndexOf(x).CompareTo(priorityWords.IndexOf(y)));
+
+                // Combine the sorted priority tags with the non-priority tags
+                var sortedTagList = priorityTags.Concat(nonPriorityTags).ToList();
+
+                updatedValue = string.Join(", ", sortedTagList);
             }
             else
             {
-                // Replace or remove the value for non-appendable tags
                 if (existingValue.Trim().Equals(newValue.Trim()))
                 {
                     updatedValue = string.Empty;
@@ -128,7 +127,6 @@ namespace MusicBeePlugin
             Api.Library_SetFileTag(fileUrl, tag, updatedValue);
             Api.Library_CommitTagsToFile(fileUrl);
         }
-
 
         private string[] GetSelectedMusics()
         {
