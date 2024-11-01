@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,7 +16,9 @@ namespace MusicBeePlugin
         private static readonly MetaDataType[] AppendableTags =
         {
             MetaDataType.Comment, // Example, add other MetaDataType values as needed
-            MetaDataType.Genre
+            MetaDataType.Genre,
+            MetaDataType.Mood,
+            MetaDataType.Occasion
         };
 
         public QuickTagger()
